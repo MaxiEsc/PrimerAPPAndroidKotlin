@@ -18,21 +18,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Forma en lenguaje Kotlin de extraer los datos de los EditText
         et1 = findViewById<EditText>(R.id.numeroA)
         et2 = findViewById<EditText>(R.id.numeroB)
-        tv1 = findViewById<EditText>(R.id.txtv_Resultado)
+        tv1 = findViewById<TextView>(R.id.txtv_Resultado)
 
-        //Este metodo Suma
+
     }
 
+    //Metodo Para Sumar
     public fun sumar(a: View ){
-        Toast.makeText(this,"Hola hasta aqui todo bien",Toast.LENGTH_SHORT)
 
         var valor1 : String = et1.text.toString()
         var valor2 : String = et2.text.toString()
-        var suma : Int = 0
+        var suma : Float = 0F
+
+        //Para Controlar las excepciones y no exploten
         try {
-            suma = valor1.toInt() + valor2.toInt()
+            suma = valor1.toFloat() + valor2.toFloat()
         } catch (nfe: NumberFormatException) {
         }
 
@@ -41,56 +44,63 @@ class MainActivity : AppCompatActivity() {
         tv1.setText(resultado)
     }
 
+    //Metodo Para Restar
     public fun restar(a: View ){
-        Toast.makeText(this,"Hola hasta aqui todo bien",Toast.LENGTH_SHORT)
 
         var valor1 : String = et1.text.toString()
         var valor2 : String = et2.text.toString()
-        var suma : Int = 0
+        var resta : Float = 0F
+
+        //Para Controlar las excepciones y no exploten
         try {
-            suma = valor1.toInt() - valor2.toInt()
+            resta = valor1.toFloat() - valor2.toFloat()
         } catch (nfe: NumberFormatException) {
+            println(nfe)
         }
 
-        var resultado : String = suma.toString()
+        var resultado : String = resta.toString()
 
         tv1.setText(resultado)
     }
 
+    //Metodo Para Multiplicar
     public fun multiplicar(a: View ){
-        Toast.makeText(this,"Hola hasta aqui todo bien",Toast.LENGTH_SHORT)
 
         var valor1 : String = et1.text.toString()
         var valor2 : String = et2.text.toString()
-        var suma : Int = 0
+        var multiplicacion : Float = 0F
+
+        //Para Controlar las excepciones y no exploten
         try {
-            suma = valor1.toInt() * valor2.toInt()
+            multiplicacion = valor1.toFloat() * valor2.toFloat()
         } catch (nfe: NumberFormatException) {
+            println(nfe)
         }
 
-        var resultado : String = suma.toString()
+        var resultado : String = multiplicacion.toString()
 
         tv1.setText(resultado)
     }
 
+    //Metodo Para Dividir
     public fun dividir(a: View ){
-        Toast.makeText(this,"Hola hasta aqui todo bien",Toast.LENGTH_SHORT)
 
         var valor1 : String = et1.text.toString()
         var valor2 : String = et2.text.toString()
-        var suma : Int = 0
+        var division : Float = 0F
         var resultado : String = ""
-        try {
-            suma = valor1.toInt() / if (valor2.toInt() == 0 ) 1 else valor2.toInt()
-        } catch (nfe: NumberFormatException) {
 
+        //Para Controlar las excepciones y no exploten
+        try {
+            division = (valor1.toInt() / if (valor2.toInt() == 0 ) 1 else valor2.toInt()).toFloat()
+        } catch (nfe: NumberFormatException) {
+            println(nfe)
         }
         if (valor2.toInt() == 0 ){
-            resultado = "Invalido"
+            resultado = "Invalido ¡¡No se puede dividir por cero!!"
             }else{
-            resultado = suma.toString()
+            resultado = division.toString()
         }
-
 
         tv1.setText(resultado)
     }
